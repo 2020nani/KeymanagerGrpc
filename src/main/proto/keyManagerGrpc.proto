@@ -8,13 +8,31 @@ option objc_class_prefix = "HLW";
 package br.com.api;
 
 service KeyManagerGrpcService {
-  rpc send (KeyManagerGrpcRequest) returns (KeyManagerGrpcReply) {}
+  rpc cadastraPixKey (KeyManagerGrpcRequest) returns (KeyManagerGrpcResponse) {}
+}
+
+enum TipoChave {
+  UNKNOW_CHAVE = 0;
+  CPF = 1;
+  CELULAR = 2;
+  EMAIL = 3;
+  ALEATORIA = 4;
+}
+
+enum TipoConta {
+  UNKNOW_CONTA = 0;
+  CONTA_CORRENTE = 1;
+  CONTA_POUPANCA = 2;
 }
 
 message KeyManagerGrpcRequest {
-  string name = 1;
+  string idCliente = 1;
+  TipoChave tipodechave = 2;
+  string chave = 3;
+  TipoConta tipodeconta = 4;
 }
 
-message KeyManagerGrpcReply {
-  string message = 1;
+message KeyManagerGrpcResponse {
+  string idCliente = 1;
+  string pixId = 2;
 }
