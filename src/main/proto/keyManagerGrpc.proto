@@ -11,6 +11,10 @@ service KeyManagerGrpcService {
   rpc cadastraPixKey (KeyManagerGrpcRequest) returns (KeyManagerGrpcResponse) {}
 }
 
+service RemovePixKeyService {
+  rpc excluiPixKey (PixKeyChaveRequest) returns (ExcluiPixKeyResponse) {}
+}
+
 enum TipoChave {
   UNKNOW_CHAVE = 0;
   CPF = 1;
@@ -35,4 +39,13 @@ message KeyManagerGrpcRequest {
 message KeyManagerGrpcResponse {
   string idCliente = 1;
   string pixId = 2;
+}
+
+message PixKeyChaveRequest {
+  string idCliente = 1;
+  string pixId = 2;
+}
+
+message ExcluiPixKeyResponse{
+  string message = 1;
 }
